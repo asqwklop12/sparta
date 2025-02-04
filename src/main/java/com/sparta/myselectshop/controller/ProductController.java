@@ -24,14 +24,14 @@ public class ProductController {
 
     @PostMapping("/products")
     public ProductResponseDto createProduct(@RequestBody ProductRequestDto productRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetail) {
-       return productService.createProduct(productRequestDto,userDetail.getUser());
+        return productService.createProduct(productRequestDto, userDetail.getUser());
 
     }
 
 
     @PutMapping("/products/{id}")
     public ProductResponseDto updateProduct(@PathVariable Long id, @RequestBody ProductMypriceRequestDto requestDto) {
-        return productService.updateProduct(id,requestDto);
+        return productService.updateProduct(id, requestDto);
     }
 
     @GetMapping("/products")
@@ -42,7 +42,7 @@ public class ProductController {
             @RequestParam("isAsc") boolean isAsc,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return productService.getProducts(userDetails.getUser(),
-                page-1,size, sortBy, isAsc
+                page - 1, size, sortBy, isAsc
 
         );
     }
@@ -56,4 +56,18 @@ public class ProductController {
     }
 
 
+    @GetMapping("/folders/{folderId}/products")
+    public Page<ProductResponseDto> getProductsInFolder(
+            @PathVariable Long folderId,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sortBy") String sortBy,
+            @RequestParam("isAsc") boolean isAsc,
+            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return productService.getProductsInFolder(folderId, userDetails.getUser(),
+                page - 1, size, sortBy, isAsc
+
+        );
+
+    }
 }

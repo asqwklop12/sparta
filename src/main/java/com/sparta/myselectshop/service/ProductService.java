@@ -101,13 +101,26 @@ public class ProductService {
         }
 
 
-        Optional<ProductFolder> overlapFolder =  productFolderRepository.findByProductAndFolder(product, folder);
+        Optional<ProductFolder> overlapFolder = productFolderRepository.findByProductAndFolder(product, folder);
 
-        if(overlapFolder.isPresent()) {
+        if (overlapFolder.isPresent()) {
             throw new IllegalArgumentException("중복된 폴더입니다.");
         }
 
         productFolderRepository.save(new ProductFolder(product, folder));
+
+    }
+
+    public Page<ProductResponseDto> getProductsInFolder(Long folderId, User user, int page
+            , int size, String sortBy, boolean isAsc) {
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageAble = PageRequest.of(page, size, sort);
+
+        Page<Product> productList = productRepository.findAllByUserAndProductFolderList_FolderId(user, folderId,pageAble);
+
+        Page<ProductResponseDto> responseDtoList = productList.map(ProductResponseDto::new);
+        return responseDtoList;
 
     }
 }
