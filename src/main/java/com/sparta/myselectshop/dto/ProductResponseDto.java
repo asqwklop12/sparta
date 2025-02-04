@@ -19,7 +19,7 @@ public class ProductResponseDto {
     private int myprice;
 
 
-    private List<FolderResponseDto> proudctFolderList = new ArrayList<>();
+    private List<FolderResponseDto> productFolderList = new ArrayList<>();
     public ProductResponseDto(Product product) {
         this.id = product.getId();
         this.title = product.getTitle();
@@ -29,7 +29,7 @@ public class ProductResponseDto {
         this.myprice = product.getMyprice();
 
         for (ProductFolder productFolder : product.getProductFolderList()) {
-            proudctFolderList.add(new FolderResponseDto(productFolder.getFolder()));
+            productFolderList.add(new FolderResponseDto(productFolder.getFolder()));
         }
     }
 }
