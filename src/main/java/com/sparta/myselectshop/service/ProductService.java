@@ -84,6 +84,7 @@ public class ProductService {
         return productResponseDtos;
     }
 
+    @Transactional
     public void addFolder(Long productId, Long folderId, User user) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new NullPointerException("해당 상품이 존재하지 않습니다."));
 
