@@ -53,7 +53,7 @@ class ProductServiceTest {
 
         Product product = new Product(requestProductDto, user);
 
-        ProductService productService = new ProductService(productRepository, folderRepository, productFolderRepository);
+        ProductService productService = new ProductService(productRepository, folderRepository, productFolderRepository,null);
 
         given(productRepository.findById(productId)).willReturn(Optional.of(product));
 
@@ -74,7 +74,7 @@ class ProductServiceTest {
         ProductMypriceRequestDto requestMyPriceDto = new ProductMypriceRequestDto();
         requestMyPriceDto.setMyprice(myprice);
 
-        ProductService productService = new ProductService(productRepository, folderRepository, productFolderRepository);
+        ProductService productService = new ProductService(productRepository, folderRepository, productFolderRepository,null);
 
         // when
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {

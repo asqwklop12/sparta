@@ -2,14 +2,9 @@ package com.sparta.myselectshop.controller;
 
 import com.sparta.myselectshop.dto.FolderRequestDto;
 import com.sparta.myselectshop.dto.FolderResponseDto;
-import com.sparta.myselectshop.exception.RestApiException;
 import com.sparta.myselectshop.security.UserDetailsImpl;
 import com.sparta.myselectshop.service.FolderService;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
