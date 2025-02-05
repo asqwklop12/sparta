@@ -43,10 +43,10 @@ public class ProductService {
         int myprice = requestDto.getMyprice();
         if (myprice < MIN_MY_PRICE) {
             throw new IllegalArgumentException(
-            messageSource.getMessage("below.min.my.price",
-                    new Integer[]{MIN_MY_PRICE},
-                    "Wrong Price",
-                    Locale.getDefault()));
+                    messageSource.getMessage("below.min.my.price",
+                            new Integer[]{MIN_MY_PRICE},
+                            "Wrong Price",
+                            Locale.getDefault()));
         }
 
         Product product = productRepository.findById(id).orElseThrow(
@@ -132,8 +132,7 @@ public class ProductService {
 
         Page<Product> productList = productRepository.findAllByUserAndProductFolderList_FolderId(user, folderId, pageAble);
 
-        Page<ProductResponseDto> responseDtoList = productList.map(ProductResponseDto::new);
-        return responseDtoList;
+        return productList.map(ProductResponseDto::new);
 
     }
 }
