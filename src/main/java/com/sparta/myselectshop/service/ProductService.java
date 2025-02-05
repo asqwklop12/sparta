@@ -34,7 +34,6 @@ public class ProductService {
     }
 
     @Transactional
-
     public ProductResponseDto updateProduct(Long id, ProductMypriceRequestDto requestDto) {
         int myprice = requestDto.getMyprice();
         if (myprice < MIN_MY_PRICE) {
